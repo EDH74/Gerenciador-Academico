@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciado Academico</title>
+</head>
+<body>
+    <main>
+        <h1>Gerenciador de Tarefas Academicas</h1>
+
+        <div id="filtros">
+            <p>Buscar por titulo: <input type="text" name="" id="filtroTitulo"></p>
+
+        
+    
+            <fieldset id="statusFiltro">
+                <legend>Status</legend>
+
+                <label for="fazerFiltro">A Fazer</label> <input type="radio" name="status" id="fazerFiltro" value="a_Fazer" checked>
+
+                <label for="andamentoFiltro">Em Andamento</label> <input type="radio" name="status" id="andamentoFiltro" value="emAndamento">
+
+                <label for="revisaoFiltro">Em revisão</label> <input type="radio" name="status" id="revisaoFiltro" value="emRevisao">
+
+                <label for="concluidaFiltro">Concluída</label> <input type="radio" name="status" id="concluidaFiltro" value="concluida">
+
+            </fieldset>
+
+            <fieldset id="prioridadeFiltro">
+                <legend>Prioridade</legend>
+
+                Baixa <input type="radio" name="prioridade" id="baixa" value="baixa" checked>
+                Media <input type="radio" name="prioridade" id="media" value="emAndamento">
+                Alta <input type="radio" name="prioridade" id="baixa" value="alta">
+            </fieldset>
+
+            <button>Pesquisar</button>
+        
+        </div>
+
+        <div id="projetos">
+
+            <section id="aFazerStatus">
+                <h2>A fazer</h2>
+                <ul>
+                    <li>
+                        <article>
+                            <h3>Titulo: Implemento de nova feature</h3>
+                            <p>
+                                <strong>Projeto:</strong> implementar cadastro de produtos;
+                                <strong>Responsável: </strong> Eduardo Araujo;
+                                <strong>Prazo: </strong> 20/04/2026;
+                                <span class="nivelPrioridade"><strong>Prioridade: </strong> Alta</span>
+                            </p>
+                        </article>
+                    </li>
+
+                    
+                </ul>
+            </section>
+
+            <section id="aFazerStatus">
+                <h2>Em andamento</h2>
+                <ul>
+                    <li>
+                        <article>
+                            <h3>Titulo: Correção de Bugs</h3>
+                            <p>
+                                <strong>Projeto:</strong> Arrumar Bug do NAN do relatório;
+                                <strong>Responsável: </strong> Felicia Kipper;
+                                <strong>Prazo: </strong> 25/04/2026;
+                                <span class="nivelPrioridade"><strong>Prioridade: </strong> Alta</span>
+                            </p>
+                        </article>
+                    </li>
+
+                    
+                </ul>
+            </section>
+
+            <section id="aFazerStatus">
+                <h2>Em revisão</h2>
+                <ul>
+                    <li>
+                        <article>
+                            <h3>Titulo: Ajuste de visual</h3>
+                            <p>
+                                <strong>Projeto:</strong> trocar cor de botão;
+                                <strong>Responsável: </strong> Claudio;
+                                <strong>Prazo: </strong> 14/04/2026;
+                                <span class="nivelPrioridade"><strong>Prioridade: </strong> Baixa</span>
+                            </p>
+                        </article>
+                    </li>
+
+                    
+                </ul>
+            </section>
+
+            <section id="aFazerStatus">
+                <h2>Concluída</h2>
+                <ul>
+                    <li>
+                        <article>
+                            <h3>Titulo: Troca de técnologia</h3>
+                            <p>
+                                <strong>Projeto:</strong> Refatorar sistema;
+                                <strong>Responsável: </strong> Eduardo Araujo;
+                                <strong>Prazo: </strong> 10/04/2026;
+                                <span class="nivelPrioridade"><strong>Prioridade: </strong> Alta</span>
+                            </p>
+                        </article>
+                    </li>
+                    
+                    <li>
+                        <article>
+                            <h3>Titulo: Testes</h3>
+                            <p>
+                                <strong>Projeto:</strong> Teste individual no sistema de login;
+                                <strong>Responsável: </strong> Eduardo Araujo;
+                                <strong>Prazo: </strong> 10/04/2026;
+                                <span class="nivelPrioridade"><strong>Prioridade: </strong> Alta</span>
+                            </p>
+                        </article>
+                    </li>
+                </ul>
+            </section>
+
+
+        </div>
+        
+    </main>
+
+    <footer>&#xa9;Eduardo Araujo | Desenvolvimento Front-end Quarta Feira</footer>
+</body>
+</html>
