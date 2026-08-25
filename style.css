@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+:root{
+    --backGroundPage: #EBEFF2;
+    --backGroundKambam:#FEFFFE;
+    --backGroundCardFazer:#CAD4DF;
+    --backGroundCardEmAndamento:#F8EDA3;
+    --backGoundCardEmRevisao:#FFC792;
+    --backGroudConcluido:#A5E0AC;
+    --colorButtonBaixa:#B5DFB1;
+    --colorButtonAlta:#F3A29D;
+    --colorButtonMedia:#ffe58f;
+
+    --gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+global{
+    border:none;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--backGroundPage);
+}
+
+
+
+
+
+main{
+    background-color: var(--backGroundKambam);
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.315);
+    border-radius: 10px;
+    padding: 0;
+    margin: auto;
+    margin-top:30px;
+    padding: 20px;
+}
+
+main >h1{
+    margin: 20 auto;
+
+}
+
+#filtros{
+    display:flex;
+    flex-wrap: wrap;
+    box-shadow: 0px 10px 25px rgba(92, 92, 92, 0.411);
+    padding: 10px;
+    margin: 20px auto;
+}
+
+#filtros > fieldset{
+    border:none;
+    margin-left: 4%;
+}
+
+#filtros > button{
+    border:none;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    border-radius: 5px;
+    margin-left: auto;
+}
+
+#filtros > button:hover{
+    border:none;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    border-radius: 5px;
+    background-color: rgb(128, 128, 128);
+    cursor: pointer;
+    text-align: left;
+}
+
+.card{
+    width: auto;
+    height: auto;
+    min-width: 0;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#projetos{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  padding: 20px;
+}
+
+@media(min-width: 320px){
+    #projetos{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media(min-width: 640px){
+    #projetos{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(min-width: 800px){
+    #projetos{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(min-width: 1024px){
+    #projetos{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
