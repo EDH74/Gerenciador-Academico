@@ -3,18 +3,29 @@
 :root{
     --backGroundPage: #EBEFF2;
     --backGroundKambam:#FEFFFE;
-    --backGroundCardFazer:#CAD4DF;
+    --backGroundCard: #52525252;
+
+    --backGroundCardFazer:#8a8a8a91;
+    --titleCardFazer: #8a8a8abb;
+
     --backGroundCardEmAndamento:#F8EDA3;
+    --titleCardEmAndamento: #bdab37;
+
     --backGoundCardEmRevisao:#FFC792;
+    --titleCardEmRevisao: #ca9c71;
+
     --backGroudConcluido:#A5E0AC;
+    --titleConcluido: #64e773;
+
     --colorButtonBaixa:#B5DFB1;
     --colorButtonAlta:#F3A29D;
     --colorButtonMedia:#ffe58f;
 
     --gap: clamp(0.75rem, 1.5vw, 1.5rem);
+    --borderBoxConfig: 0px 4px 20px rgba(0, 0, 0, 0.527);
 }
 
-global{
+*{
     border:none;
     box-sizing: border-box;
 }
@@ -24,12 +35,16 @@ body{
 }
 
 
+footer{
+    padding: 30px;
+    text-align: center;
 
+}
 
 
 main{
     background-color: var(--backGroundKambam);
-    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.315);
+    box-shadow: var(--borderBoxConfig);
     border-radius: 10px;
     padding: 0;
     margin: auto;
@@ -45,7 +60,7 @@ main >h1{
 #filtros{
     display:flex;
     flex-wrap: wrap;
-    box-shadow: 0px 10px 25px rgba(92, 92, 92, 0.411);
+    box-shadow: var(--borderBoxConfig);
     padding: 10px;
     margin: 20px auto;
 }
@@ -57,14 +72,14 @@ main >h1{
 
 #filtros > button{
     border:none;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    box-shadow: var(--borderBoxConfig);
     border-radius: 5px;
     margin-left: auto;
 }
 
 #filtros > button:hover{
     border:none;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    box-shadow: var(--borderBoxConfig);
     border-radius: 5px;
     background-color: rgb(128, 128, 128);
     cursor: pointer;
@@ -76,19 +91,88 @@ main >h1{
     height: auto;
     min-width: 0;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
-    padding: 10px;
+    padding: 0px;
     border-radius: 10px;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    
 }
 
 #projetos{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: var(--gap);
   padding: 20px;
 }
+
+.card > h2{
+    margin:auto;
+    text-align: center;
+    text-wrap: wrap;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    padding: 5px;
+}
+
+ul {
+    padding: 0;
+    margin: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+    list-style: none;
+}
+
+
+li > article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: right;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    background-color: var(--backGroundCard);
+    padding: 10px;
+    margin: auto;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+#aFazer{
+    background-color: var(--backGroundCardFazer);
+}
+
+#aFazer>h2{
+    background-color: var(--titleCardFazer);
+}
+
+
+#EmAndamento{
+    background-color: var(--backGroundCardEmAndamento);
+}
+
+#EmAndamento>h2{
+    background-color: var(--titleCardEmAndamento);
+}
+
+
+#EmRevisao{
+    background-color: var(--backGoundCardEmRevisao);
+}
+
+#EmRevisao>h2{
+    background-color: var(--titleCardEmRevisao);
+}
+
+#Concluido{
+    background-color: var(--backGroudConcluido);
+}
+
+#Concluido>h2{
+    background-color: var(--titleConcluido);
+}
+
+
+
 
 @media(min-width: 320px){
     #projetos{
@@ -102,11 +186,6 @@ main >h1{
     }
 }
 
-@media(min-width: 800px){
-    #projetos{
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 @media(min-width: 1024px){
     #projetos{
