@@ -113,6 +113,27 @@ main >h1{
     padding: 5px;
 }
 
+.nivelPrioridade{
+    border:0.5px solid rgba(0, 0, 0, 0.473);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.cardButton{
+    padding: 5px;
+    margin-left: auto;
+    background-color: #F3A29D;
+    height: 25px;
+    border: 1px solid black
+}
+
+.cardButton:hover{
+    cursor: pointer;
+    background-color: #e25a52;
+}
+
+
+
 ul {
     padding: 0;
     margin: 1;
@@ -137,6 +158,19 @@ li > article{
 }
 
 
+.baixa{
+    background-color: var(--colorButtonBaixa);
+}
+
+.media{
+    background-color: var(--colorButtonMedia);
+}
+
+.alta{
+    background-color: var(--colorButtonAlta);
+}
+
+
 #aFazer{
     background-color: var(--backGroundCardFazer);
 }
@@ -144,6 +178,7 @@ li > article{
 #aFazer>h2{
     background-color: var(--titleCardFazer);
 }
+
 
 
 #EmAndamento{

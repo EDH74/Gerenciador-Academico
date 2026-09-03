@@ -1,0 +1,68 @@
+{
+  "tarefas": [
+    {
+      "id": "TASK-001",
+      "titulo": "Mapear requisitos do módulo de relatórios",
+      "descricao": "Entrevistar stakeholders para levantar os requisitos da nova funcionalidade",
+      "status": "a_fazer",
+      "prioridade": "baixa",
+      "prazo": "2026-09-20"
+    },
+    {
+      "id": "TASK-002",
+      "titulo": "Criar mockups do fluxo de checkout",
+      "descricao": "Desenhar protótipos de alta fidelidade no Figma para validação",
+      "status": "a_fazer",
+      "prioridade": "media",
+      "prazo": "2026-09-18"
+    },
+    {
+      "id": "TASK-003",
+      "titulo": "Desenvolver tela de autenticação",
+      "descricao": "Criar formulário de login com validação de campos e integração OAuth",
+      "status": "em_progresso",
+      "prioridade": "alta",
+      "prazo": "2026-09-08"
+    },
+    {
+      "id": "TASK-004",
+      "titulo": "Ajustar layout responsivo do dashboard",
+      "descricao": "Corrigir quebra de elementos na visualização mobile do painel principal",
+      "status": "em_progresso",
+      "prioridade": "media",
+      "prazo": "2026-09-10"
+    },
+    {
+      "id": "TASK-005",
+      "titulo": "Revisão do código do gateway de pagamento",
+      "descricao": "Realizar code review do PR #42 referente ao módulo financeiro",
+      "status": "em_revisao",
+      "prioridade": "alta",
+      "prazo": "2026-09-05"
+    },
+    {
+      "id": "TASK-006",
+      "titulo": "Validar cobertura de testes unitários",
+      "descricao": "Garantir taxa mínima de 85% de cobertura antes do deploy em produção",
+      "status": "em_revisao",
+      "prioridade": "media",
+      "prazo": "2026-09-06"
+    },
+    {
+      "id": "TASK-007",
+      "titulo": "Configurar ambiente de desenvolvimento",
+      "descricao": "Instalar dependências e preparar arquivo de variáveis de ambiente",
+      "status": "concluido",
+      "prioridade": "alta",
+      "prazo": "2026-09-01"
+    },
+    {
+      "id": "TASK-008",
+      "titulo": "Atualizar biblioteca de componentes UI",
+      "descricao": "Migrar componentes legados para a nova versão do design system",
+      "status": "concluido",
+      "prioridade": "baixa",
+      "prazo": "2026-08-30"
+    }
+  ]
+}
