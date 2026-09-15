@@ -63,6 +63,22 @@
       "status": "concluido",
       "prioridade": "baixa",
       "prazo": "2026-08-30"
+    },
+    {
+      "id": "TASK-009",
+      "titulo": "Implementar sistema de notificações",
+      "descricao": "Adicionar alertas em tempo real para eventos críticos do sistema",
+      "status": "a_fazer",
+      "prioridade": "alta",
+      "prazo": "2026-09-22"
+    },
+    {
+      "id": "TASK-010",
+      "titulo": "Otimizar consultas ao banco de dados",
+      "descricao": "Refatorar queries SQL para melhorar performance em relatórios pesados",
+      "status": "em_progresso",
+      "prioridade": "media",
+      "prazo": "2026-09-12"
     }
   ]
 }
