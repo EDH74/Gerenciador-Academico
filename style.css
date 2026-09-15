@@ -237,6 +237,7 @@ li > article{
 }
 
 
+
 @media(min-width: 320px){
     #projetos{
         grid-template-columns: repeat(1, 1fr);
