@@ -12,7 +12,7 @@ export async function carregarTarefas(){
 
         if (tamArr == 0) return new Error(`Nenhuma tarefa encontrada`);
         
-        return tarefas.tarefasArr
+        return tarefasArr
     }catch(e){
         return new Error(e.message);
     }
