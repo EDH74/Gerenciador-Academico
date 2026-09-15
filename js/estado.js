@@ -1,5 +1,5 @@
 export function redenrizarEstado(estado, dados=null){
-    const alerta = document.querySelector("#alerta"); 
+    const alerta = document.querySelector("#aviso"); 
         
     if (alerta) alerta.style.display = "block";
 
@@ -16,13 +16,14 @@ export function redenrizarEstado(estado, dados=null){
             alerta.textContent = `Erro: ${dados.message}`;
         }
     }else if(estado == "sucesso"){
+        alerta.classList.remove("alerta");
         alerta.classList.add("sucesso");
-        const qntTarefas = dados ? dados.tarefas.length : 0;
+        const qntTarefas = dados ? dados.length : 0;
         alerta.textContent = `Foram carregadas ${qntTarefas} tarefas com sucesso!`;
 
         limparQuadro();
 
-        cartoes = dados.tarefas.map((e) => criarCartao(e));
+        const cartoes = dados.map((e) => criarCartao(e));
         return carregarTarefas(cartoes);
     }
 }
@@ -58,10 +59,10 @@ function criarCartao(tarefa) {
 
 
 function limparQuadro(){
-    const quadroAfazer = quadro.querySelector("#aFazer ul");
-    const quadroEmAndamento = quadro.querySelector("#EmAndamento ul");
-    const quadroEmRevisao = quadro.querySelector("#EmRevisao ul");
-    const quadroConcluido = quadro.querySelector("#Concluido ul");
+    const quadroAfazer = document.querySelector("#aFazer ul");
+    const quadroEmAndamento = document.querySelector("#EmAndamento ul");
+    const quadroEmRevisao = document.querySelector("#EmRevisao ul");
+    const quadroConcluido = document.querySelector("#Concluido ul");
 
     quadroAfazer.innerHTML = "";
     quadroEmAndamento.innerHTML = "";
@@ -70,11 +71,10 @@ function limparQuadro(){
 }
 
 function carregarTarefas(cards) {
-    const quadro = document.querySelector("#projetos");
-    const quadroAfazer = quadro.querySelector("#aFazer");
-    const quadroEmAndamento = quadro.querySelector("#EmAndamento");
-    const quadroEmRevisao = quadro.querySelector("#EmRevisao");
-    const quadroConcluido = quadro.querySelector("#Concluido");
+    const quadroAfazer = document.querySelector("#aFazer ul");
+    const quadroEmAndamento = document.querySelector("#EmAndamento ul");
+    const quadroEmRevisao = document.querySelector("#EmRevisao ul");
+    const quadroConcluido = document.querySelector("#Concluido ul");
 
 
     for(let card of cards) {
