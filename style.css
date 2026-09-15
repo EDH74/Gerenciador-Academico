@@ -143,6 +143,14 @@ ul {
     list-style: none;
 }
 
+ul > li{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    list-style: none;
+}
+
 
 li > article{
     display: flex;
@@ -207,6 +215,26 @@ li > article{
 }
 
 
+#aviso{
+    position: relative;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f8d7da;
+    color: #494747a9;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
+    display: none;
+}
+
+.sucesso{
+    color:#8cd495c8;
+}
+
+.error{
+    color:#dd6d76cc;
+}
 
 
 @media(min-width: 320px){
