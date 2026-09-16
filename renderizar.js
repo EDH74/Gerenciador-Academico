@@ -1,29 +1,55 @@
-import {redenrizarEstado} from "./js/estado.js"
+import {redenrizarEstado, queryFilter} from "./js/estado.js"
 import {carregarTarefas} from "./js/api.js"
+const botaoPesquisar = document.querySelector("#pesquisar");
+const botaoLimparFiltros = document.querySelector("#limparFiltros");
+
+console.log("botaoPesquisar: ", botaoPesquisar);
+
+
+const estadoApp = {
+    tarefas: [], // Originais intocadas
+    busca: "",
+    status: "todos", // Requer ajuste no HTML
+    prioridade: "todas",
+    ordenacao: "prazo_crescente",
+    estadoAtual: "carregando", 
+    erro: null
+};
+
+
 
 async function iniciarQuadro(){
 
     redenrizarEstado("carregando");
-
+    estadoApp.estadoAtual = "carregando";
     try{
         const tarefas = await carregarTarefas();
-
-        console.log(tarefas);
+        estadoApp.tarefas = [...tarefas];
 
         if (tarefas.length == 0){
             redenrizarEstado("vazio");
+            estadoApp.estadoAtual = "vazio";
         } else{
             redenrizarEstado("sucesso", tarefas); 
         }
     }catch(e){
         console.log(e)
-        renderizarEstado("erro")
+        estadoApp.estadoAtual = "erro";
+        renderizarEstado("erro", e)
     }
 }
 
 iniciarQuadro();
 
 
+
+botaoPesquisar.addEventListener("click", (e) => {
+    queryFilter();
+});
+
+botaoLimparFiltros.addEventListener("click", (e) => {
+    console.log("clicou no botao limpar filtros");
+});
 /*
 function criarCartao(tarefa) {
     const cartao = document.createElement("article");
@@ -87,5 +113,3 @@ function carregarTarefas(cards) {
         
 }
 */
-
-
