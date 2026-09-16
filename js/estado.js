@@ -71,19 +71,15 @@ export function queryFilter(estado, dados=null){
 
 
             if (filtroTitulo.toUpperCase() == e.titulo.toUpperCase()){
-                console.log(e.titulo)
                 cartoes.push(criarCartao(e));
             }else if (filtroStatus == e.status){
-                console.log(e.titulo)
                 if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
             }else if (filtroPrioridade == e.prioridade){
-                console.log(e.titulo)
                 if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
             }
 
         });
         alerta.textContent = `Foram carregadas ${cartoes.length} tarefas com sucesso!`;
-        console.log(cartoes)
         return carregarTarefas(cartoes);
     }
     
