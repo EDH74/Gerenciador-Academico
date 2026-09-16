@@ -3,7 +3,6 @@ import {carregarTarefas} from "./js/api.js"
 const botaoPesquisar = document.querySelector("#pesquisar");
 const botaoLimparFiltros = document.querySelector("#limparFiltros");
 
-console.log("botaoPesquisar: ", botaoPesquisar);
 
 
 const estadoApp = {
@@ -15,7 +14,6 @@ const estadoApp = {
     estadoAtual: "carregando", 
     erro: null
 };
-
 
 
 async function iniciarQuadro(){
@@ -30,11 +28,13 @@ async function iniciarQuadro(){
             redenrizarEstado("vazio");
             estadoApp.estadoAtual = "vazio";
         } else{
-            redenrizarEstado("sucesso", tarefas); 
+            redenrizarEstado("sucesso", tarefas);
+            estadoApp.estadoAtual = "sucesso"
         }
     }catch(e){
         console.log(e)
         estadoApp.estadoAtual = "erro";
+        estadoApp.erro = e;
         renderizarEstado("erro", e)
     }
 }
@@ -44,11 +44,19 @@ iniciarQuadro();
 
 
 botaoPesquisar.addEventListener("click", (e) => {
-    queryFilter();
+    if (estadoApp.erro) return queryFilter("erro", estadoApp.erro)
+    if (estadoApp.tarefas.length == 0) return queryFilter("vazio")
+    
+    return queryFilter("sucesso", estadoApp.tarefas);
 });
 
 botaoLimparFiltros.addEventListener("click", (e) => {
-    console.log("clicou no botao limpar filtros");
+    document.querySelector("#filtroTitulo input").value = "";
+    document.querySelector('#fazerFiltro').checked = true;
+    document.querySelector('#prioridadeFiltro').checked = true;
+
+    return queryFilter(redenrizarEstado("sucesso", estadoApp.tarefas))
+
 });
 /*
 function criarCartao(tarefa) {
