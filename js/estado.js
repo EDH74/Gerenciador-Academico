@@ -28,6 +28,67 @@ export function redenrizarEstado(estado, dados=null){
     }
 }
 
+export function queryFilter(estado, dados=null){
+    const filtroTitulo = document.querySelector("#filtroTitulo input").value;
+    const filtroStatus = document.querySelector('input[name="status"]:checked').value;
+    const filtroPrioridade = document.querySelector("input[name='prioridade']:checked").value;
+
+    
+    /*
+    console.log("filtroTitulo: ", filtroTitulo.value);
+    console.log("filtroStatus: ", filtroStatus.value);
+    console.log("filtroPrioridade: ", filtroPrioridade.value);    
+    */
+
+
+
+    const alerta = document.querySelector("#aviso"); 
+        
+    if (alerta) alerta.style.display = "block";
+
+    if (estado == "carregando"){
+        alerta.textContent = `Estamos carregando as tarefas...`;
+    } else if(estado == "vazio"){
+        alerta.textContent = `Nenhuma tarefa encontrada`;
+    } else if(estado == "erro"){
+        if (dados instanceof TypeError) {
+            alerta.textContent = `Erro ao conectar no servidor. Tente novamente mais tarde!`;
+        } else if (dados instanceof SyntaxError) {
+            alerta.textContent = "Erro de tipo: O arquivo JSON contem erro sintatico.";
+        } else if (dados instanceof Error){
+            alerta.textContent = `Erro: ${dados.message}`;
+        }
+    }else if(estado == "sucesso"){
+        alerta.classList.remove("alerta");
+        alerta.classList.add("sucesso");
+        
+
+        limparQuadro();
+
+        const cartoes = [];
+
+        dados.map((e) => {
+
+
+            if (filtroTitulo.toUpperCase() == e.titulo.toUpperCase()){
+                console.log(e.titulo)
+                cartoes.push(criarCartao(e));
+            }else if (filtroStatus == e.status){
+                console.log(e.titulo)
+                if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
+            }else if (filtroPrioridade == e.prioridade){
+                console.log(e.titulo)
+                if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
+            }
+
+        });
+        alerta.textContent = `Foram carregadas ${cartoes.length} tarefas com sucesso!`;
+        console.log(cartoes)
+        return carregarTarefas(cartoes);
+    }
+    
+}
+
 
 function criarCartao(tarefa) {
     const cartao = document.createElement("article");
@@ -85,7 +146,6 @@ function carregarTarefas(cards) {
         
 
         if (card.classList.contains("concluido")) {
-            console.log("entrou no if concluido");
             quadroConcluido.appendChild(li);
 
         } else if(card.classList.contains("em_progresso")) {
@@ -100,6 +160,8 @@ function carregarTarefas(cards) {
     }
         
 }
+
+
 
 function captalizer(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
