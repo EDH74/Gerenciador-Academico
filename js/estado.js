@@ -142,8 +142,6 @@ function carregarTarefas(cards) {
         const li = document.createElement("li");  //criando li e adicionando o article dentro dela
         li.append(card);
 
-        console.log(card.class);
-        
 
         if (card.classList.contains("concluido")) {
             quadroConcluido.appendChild(li);

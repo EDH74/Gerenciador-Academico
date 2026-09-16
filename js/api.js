@@ -1,6 +1,6 @@
 export async function carregarTarefas(){
     try{
-        const response = await fetch("./../dados.json")
+        const response = await fetch("./dados.json")
         
         if (!response.ok) return new Error("Erro ao carregar tarefas: " + response.statusText);
 
