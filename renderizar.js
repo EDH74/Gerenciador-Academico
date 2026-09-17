@@ -121,3 +121,55 @@ function carregarTarefas(cards) {
         
 }
 */
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card');
+  const containers = document.querySelectorAll('.cards-container');
+
+  // 1. Adicionando eventos em cada CARD
+  cards.forEach(card => {
+    // Quando começa a arrastar
+    card.addEventListener('dragstart', (e) => {
+      // Guarda o ID do card que está sendo arrastado
+      e.dataTransfer.setData('text/plain', e.target.id);
+      
+      // Adiciona uma classe para dar um efeito visual (opcional)
+      setTimeout(() => {
+        e.target.classList.add('dragging');
+      }, 0);
+    });
+
+    // Quando termina de arrastar
+    card.addEventListener('dragend', (e) => {
+      e.target.classList.remove('dragging');
+    });
+  });
+
+  // 2. Adicionando eventos em cada COLUNA (Dropzones)
+  containers.forEach(container => {
+    // Quando um card passa por cima da coluna
+    container.addEventListener('dragover', (e) => {
+      e.preventDefault(); // Obrigatório para permitir que o elemento seja solto
+      container.classList.add('drag-over'); // Efeito visual de hover
+    });
+
+    // Quando o card sai de cima da coluna sem ser solto
+    container.addEventListener('dragleave', (e) => {
+      container.classList.remove('drag-over');
+    });
+
+    // Quando o card é finalmente solto na coluna
+    container.addEventListener('drop', (e) => {
+      e.preventDefault();
+      container.classList.remove('drag-over');
+      
+      // Recupera o ID do card que guardamos no 'dragstart'
+      const cardId = e.dataTransfer.getData('text/plain');
+      const draggedCard = document.getElementById(cardId);
+      
+      // Move o card fisicamente no DOM para a nova coluna
+      if (draggedCard) {
+        container.appendChild(draggedCard);
+      }
+    });
+  });
+});

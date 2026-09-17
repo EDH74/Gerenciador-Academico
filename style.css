@@ -3,10 +3,10 @@
 :root{
     --backGroundPage: #EBEFF2;
     --backGroundKambam:#FEFFFE;
-    --backGroundCard: #52525252;
+    --backGroundCard: #52525222;
 
     --backGroundCardFazer:#8a8a8a91;
-    --titleCardFazer: #8a8a8abb;
+    --titleCardFazer: #8a8a8a83;
 
     --backGroundCardEmAndamento:#F8EDA3;
     --titleCardEmAndamento: #bdab37;
@@ -94,7 +94,7 @@ main >h1{
     text-align: left;
 }
 
-.card{
+.cardList{
     width: auto;
     height: auto;
     min-width: 0;
@@ -102,7 +102,15 @@ main >h1{
     padding: 0px;
     border-radius: 10px;
     min-width: 0;
-    
+}
+
+.card {
+    cursor: gab;
+}
+
+.card:active{
+    cursor: grabbing;
+    border:1px solid black;
 }
 
 #projetos{
@@ -111,40 +119,27 @@ main >h1{
   padding: 20px;
 }
 
-.card > h2{
+.cardList > h2{
     margin:auto;
     text-align: center;
     text-wrap: wrap;
     border-radius: 5px;
     width: auto;
     height: auto;
-    padding: 5px;
+    padding: 0px;
 }
 
 .nivelPrioridade{
     border:0.5px solid rgba(0, 0, 0, 0.473);
     padding: 5px;
     border-radius: 10px;
+    text-align: center;
 }
-
-.cardButton{
-    padding: 5px;
-    margin-left: auto;
-    background-color: #F3A29D;
-    height: 25px;
-    border: 1px solid black
-}
-
-.cardButton:hover{
-    cursor: pointer;
-    background-color: #e25a52;
-}
-
 
 
 ul {
-    padding: 0;
-    margin: 1;
+    padding: 0px;
+    margin: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px; 
@@ -164,7 +159,6 @@ li > article{
     display: flex;
     flex-wrap: wrap;
     justify-self: right;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
     background-color: var(--backGroundCard);
     padding: 10px;
     margin: auto;
@@ -228,23 +222,24 @@ li > article{
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #f8d7da;
-    color: #494747a9;
+    background-color: #f9b6bc;
+    color: #000000a9;
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
     display: none;
 }
 
-.sucesso{
-    color:#8cd495c8;
+.footerCard{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.error{
-    color:#dd6d76cc;
+.prazoCard{
+    border:0.5px solid rgba(0, 0, 0, 0.473);
 }
-
-
 
 @media(min-width: 320px){
     #projetos{

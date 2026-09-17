@@ -1,6 +1,7 @@
 export function redenrizarEstado(estado, dados=null){
     const alerta = document.querySelector("#aviso"); 
-        
+    alerta.style.backgroundColor = "#f9b6bc";
+
     if (alerta) alerta.style.display = "block";
 
     if (estado == "carregando"){
@@ -16,14 +17,13 @@ export function redenrizarEstado(estado, dados=null){
             alerta.textContent = `Erro: ${dados.message}`;
         }
     }else if(estado == "sucesso"){
-        alerta.classList.remove("alerta");
-        alerta.classList.add("sucesso");
         const qntTarefas = dados ? dados.length : 0;
         alerta.textContent = `Foram carregadas ${qntTarefas} tarefas com sucesso!`;
 
         limparQuadro();
 
         const cartoes = dados.map((e) => criarCartao(e));
+        alerta.style.backgroundColor = "#8cd495c8";
         return carregarTarefas(cartoes);
     }
 }
@@ -33,6 +33,7 @@ export function queryFilter(estado, dados=null){
     const filtroStatus = document.querySelector('input[name="status"]:checked').value;
     const filtroPrioridade = document.querySelector("input[name='prioridade']:checked").value;
 
+    alerta.style.backgroundColor = "#f9b6bc";
     
     /*
     console.log("filtroTitulo: ", filtroTitulo.value);
@@ -79,6 +80,7 @@ export function queryFilter(estado, dados=null){
             }
 
         });
+        alerta.style.backgroundColor = "#8cd495c8";
         alerta.textContent = `Foram carregadas ${cartoes.length} tarefas com sucesso!`;
         return carregarTarefas(cartoes);
     }
@@ -89,27 +91,46 @@ export function queryFilter(estado, dados=null){
 function criarCartao(tarefa) {
     const cartao = document.createElement("article");
     cartao.classList.add(tarefa.status);
+    cartao.classList.add("card");
+    cartao.id = tarefa.id
+    cartao.setAttribute("draggable", true);
     
     const titulo = document.createElement("h3");
     titulo.textContent = tarefa.titulo;
 
-    const button = document.createElement("button");
-    button.classList.add("cardButton");
-    button.innerText = "X";
 
-    const p = document.createElement("p");
-    p.innerHTML = `<strong>Titulo:</strong> ${tarefa.titulo} <br><strong>Descrição:</strong> ${tarefa.descricao}; <br><strong>Prazo: </strong> ${tarefa.prazo};`
+    const divInfo = document.createElement("div");
+
+    const pTitulo = document.createElement("p");
+    pTitulo.classList.add("tituloCard");
+    pTitulo.innerHTML= `<strong>Titulo:</strong> ${tarefa.titulo}`;
+
+    const pDescricao = document.createElement("p");
+    pDescricao.classList.add("descricaoCard");
+    pDescricao.innerHTML = `<strong>Descrição:</strong> ${tarefa.descricao}`;
+
+    divInfo.append(pTitulo);
+    divInfo.append(pDescricao);
+
+    const divFooterCard = document.createElement("div");
+    divFooterCard.classList.add("footerCard");
+
+    const pPrazo = document.createElement("p");
+    pPrazo.classList.add("prazoCard");
+    pPrazo.innerHTML = tarefa.prazo;
 
 
     const status = document.createElement("p");
-    let prioridade = tarefa.prioridade;
-    status.innerHTML = `<p><span class="nivelPrioridade ${tarefa.prioridade}">${captalizer(tarefa.prioridade)}</span></p>`;
+    status.classList.add("nivelPrioridade");
+    status.classList.add(tarefa.prioridade);
+    status.innerHTML = captalizer(tarefa.prioridade)
 
+    divFooterCard.append(status);
+    divFooterCard.append(pPrazo)
     
     cartao.append(titulo);
-    cartao.append(button);
-    cartao.append(p);
-    cartao.append(status);
+    cartao.append(divInfo);
+    cartao.append(divFooterCard);
 
     return cartao;
 }
