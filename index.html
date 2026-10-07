@@ -20,22 +20,24 @@
             <fieldset id="statusFiltro">
                 <legend>Status</legend>
 
+                <label for="fazerFiltro">Todos</label> <input type="radio" name="status" id="todosStatus" value="todos" checked>
+
                 <label for="fazerFiltro">A Fazer</label> <input type="radio" name="status" id="fazerFiltro" value="a_fazer">
 
                 <label for="andamentoFiltro">Em Andamento</label> <input type="radio" name="status" id="andamentoFiltro" value="em_progresso">
 
                 <label for="revisaoFiltro">Em revisão</label> <input type="radio" name="status" id="revisaoFiltro" value="em_revisao">
 
-                <label for="concluidaFiltro">Concluída</label> <input type="radio" name="status" id="concluidaFiltro" value="concluida">
+                <label for="concluidaFiltro">Concluída</label> <input type="radio" name="status" id="concluidaFiltro" value="concluido">
 
             </fieldset>
 
             <fieldset id="prioridadeFiltro">
                 <legend>Prioridade</legend>
-
-                Baixa <input type="radio" name="prioridade" id="baixa" value="baixa" checked>
-                Media <input type="radio" name="prioridade" id="media" value="emAndamento">
-                Alta <input type="radio" name="prioridade" id="baixa" value="alta">
+                <label for="todosPrioridade">Todos</label> <input type="radio" name="prioridade" id="todosPrioridade" value="todos" checked>
+                <label for="baixa">Baixa</label> <input type="radio" name="prioridade" id="baixa" value="baixa">
+                <label for="media">Média</label> <input type="radio" name="prioridade" id="media" value="media">
+                <label for="alta">Alta</label> <input type="radio" name="prioridade" id="alta" value="alta">
             </fieldset>
 
             <div id="botoes">
