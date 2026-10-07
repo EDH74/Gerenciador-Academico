@@ -68,16 +68,7 @@ export function queryFilter(estado, dados=null){
         const cartoes = [];
 
         dados.map((e) => {
-
-
-            if (filtroTitulo.toUpperCase() == e.titulo.toUpperCase()){
-                cartoes.push(criarCartao(e));
-            }else if (filtroStatus == e.status){
-                if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
-            }else if (filtroPrioridade == e.prioridade){
-                if (!(cartoes.includes(e))) cartoes.push(criarCartao(e));
-            }
-
+            cartoes.push(criarCartao(e));
         });
         alerta.textContent = `Foram carregadas ${cartoes.length} tarefas com sucesso!`;
         return carregarTarefas(cartoes);
@@ -89,25 +80,24 @@ export function queryFilter(estado, dados=null){
 function criarCartao(tarefa) {
     const cartao = document.createElement("article");
     cartao.classList.add(tarefa.status);
+    cartao.classList.add("Todos");
     
     const titulo = document.createElement("h3");
+    //cartao.classList.add(tarefa.titulo);
     titulo.textContent = tarefa.titulo;
-
-    const button = document.createElement("button");
-    button.classList.add("cardButton");
-    button.innerText = "X";
 
     const p = document.createElement("p");
     p.innerHTML = `<strong>Titulo:</strong> ${tarefa.titulo} <br><strong>Descrição:</strong> ${tarefa.descricao}; <br><strong>Prazo: </strong> ${tarefa.prazo};`
+    p.classList.add("titulo");
 
 
     const status = document.createElement("p");
     let prioridade = tarefa.prioridade;
+    cartao.classList.add(prioridade);
     status.innerHTML = `<p><span class="nivelPrioridade ${tarefa.prioridade}">${captalizer(tarefa.prioridade)}</span></p>`;
 
     
     cartao.append(titulo);
-    cartao.append(button);
     cartao.append(p);
     cartao.append(status);
 
