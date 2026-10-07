@@ -5,6 +5,7 @@ const botaoLimparFiltros = document.querySelector("#limparFiltros");
 
 
 
+
 const estadoApp = {
     tarefas: [], // Originais intocadas
     busca: "",
@@ -44,80 +45,39 @@ iniciarQuadro();
 
 
 botaoPesquisar.addEventListener("click", (e) => {
-    if (estadoApp.erro) return queryFilter("erro", estadoApp.erro)
-    if (estadoApp.tarefas.length == 0) return queryFilter("vazio")
+    if (estadoApp.erro) return queryFilter("erro", estadoApp.erro);
+    if (estadoApp.tarefas.length == 0) return queryFilter("vazio");
     
-    return queryFilter("sucesso", estadoApp.tarefas);
+
+    return redenrizarEstado("sucesso",filtroBusca(estadoApp));
 });
 
 botaoLimparFiltros.addEventListener("click", (e) => {
     document.querySelector("#filtroTitulo input").value = "";
-    document.querySelector('#fazerFiltro').checked = true;
-    document.querySelector('#prioridadeFiltro').checked = true;
+    document.querySelector('#statusFiltro input[name="status"]:checked').checked = true;
+    document.querySelector('#prioridadeFiltro input[name="prioridade"]:checked').checked = true;
 
-    return queryFilter(redenrizarEstado("sucesso", estadoApp.tarefas))
+    return redenrizarEstado("sucesso", estadoApp.tarefas)
 
 });
-/*
-function criarCartao(tarefa) {
-    const cartao = document.createElement("article");
-    cartao.classList.add(tarefa.status);
-    
-    const titulo = document.createElement("h3");
-    titulo.textContent = tarefa.titulo;
-
-    const button = document.createElement("button");
-    button.classList.add("cardButton");
-    button.innerText = "X";
-
-    const p = document.createElement("p");
-    p.innerHTML = `<strong>Titulo:</strong> ${tarefa.titulo} <br><strong>Descrição:</strong> ${tarefa.descricao}; <br><strong>Prazo: </strong> ${tarefa.prazo};`
 
 
-    const status = document.createElement("p");
-    let prioridade = tarefa.prioridade;
-    status.innerHTML = `<p><span class="nivelPrioridade ${tarefa.prioridade}">${captalizer(tarefa.prioridade)}</span></p>`;
+//filtro usado para filtrar as tarefas de acordo com os filtros selecionados pelo usuário
 
-    
-    cartao.append(titulo);
-    cartao.append(button);
-    cartao.append(p);
-    cartao.append(status);
 
-    return cartao;
+console.log(filtroStatus, filtroPrioridade);
+
+
+function filtroBusca(estadoApp){
+    const filtroTitulo = document.querySelector("#filtroTitulo input").value;
+    const filtroStatus = document.querySelector('#statusFiltro input[name="status"]:checked')?.value || "todos";
+    const filtroPrioridade = document.querySelector('#prioridadeFiltro input[name="prioridade"]:checked')?.value || "todos";
+
+    console.log(filtroStatus, filtroPrioridade);
+
+    return estadoApp.tarefas
+    .filter(tarefa => filtroTitulo === "" || tarefa.titulo.toLowerCase().includes(filtroTitulo.toLowerCase()))
+    .filter(tarefa => filtroStatus.toLowerCase().trim() == "todos" || tarefa.status == filtroStatus.trim())
+    .filter(tarefa => filtroPrioridade.toLowerCase() == "todos" || tarefa.prioridade == filtroPrioridade.trim());
 }
-*/
 
-/*
-function carregarTarefas(cards) {
-    const quadro = document.querySelector("#projetos");
-    const quadroAfazer = quadro.querySelector("#aFazer");
-    const quadroEmAndamento = quadro.querySelector("#EmAndamento");
-    const quadroEmRevisao = quadro.querySelector("#EmRevisao");
-    const quadroConcluido = quadro.querySelector("#Concluido");
-
-
-    for(let card of cards) {
-        const li = document.createElement("li");  //criando li e adicionando o article dentro dela
-        li.append(card);
-
-        console.log(card.class);
-        
-
-        if (card.classList.contains("concluido")) {
-            console.log("entrou no if concluido");
-            quadroConcluido.appendChild(li);
-
-        } else if(card.classList.contains("em_progresso")) {
-            quadroEmAndamento.appendChild(li);
-
-        } else if(card.classList.contains("em_revisao")) {
-            quadroEmRevisao.append(li);
-
-        } else if(card.classList.contains("a_fazer")) {
-            quadroAfazer.appendChild(li);
-        }
-    }
-        
-}
-*/
