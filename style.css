@@ -165,7 +165,7 @@ li > article{
     flex-wrap: wrap;
     justify-self: right;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.527);
-    background-color: var(--backGroundCard);
+    background-color: var(--backGroundCard)!important;
     padding: 10px;
     margin: auto;
     width: auto;
@@ -236,9 +236,7 @@ li > article{
     display: none;
 }
 
-.sucesso{
-    color:#8cd495c8;
-}
+
 
 .error{
     color:#dd6d76cc;
