@@ -28,54 +28,6 @@ export function redenrizarEstado(estado, dados=null){
     }
 }
 
-export function queryFilter(estado, dados=null){
-    const filtroTitulo = document.querySelector("#filtroTitulo input").value;
-    const filtroStatus = document.querySelector('input[name="status"]:checked').value;
-    const filtroPrioridade = document.querySelector("input[name='prioridade']:checked").value;
-
-    
-    /*
-    console.log("filtroTitulo: ", filtroTitulo.value);
-    console.log("filtroStatus: ", filtroStatus.value);
-    console.log("filtroPrioridade: ", filtroPrioridade.value);    
-    */
-
-
-
-    const alerta = document.querySelector("#aviso"); 
-        
-    if (alerta) alerta.style.display = "block";
-
-    if (estado == "carregando"){
-        alerta.textContent = `Estamos carregando as tarefas...`;
-    } else if(estado == "vazio"){
-        alerta.textContent = `Nenhuma tarefa encontrada`;
-    } else if(estado == "erro"){
-        if (dados instanceof TypeError) {
-            alerta.textContent = `Erro ao conectar no servidor. Tente novamente mais tarde!`;
-        } else if (dados instanceof SyntaxError) {
-            alerta.textContent = "Erro de tipo: O arquivo JSON contem erro sintatico.";
-        } else if (dados instanceof Error){
-            alerta.textContent = `Erro: ${dados.message}`;
-        }
-    }else if(estado == "sucesso"){
-        alerta.classList.remove("alerta");
-        alerta.classList.add("sucesso");
-        
-
-        limparQuadro();
-
-        const cartoes = [];
-
-        dados.map((e) => {
-            cartoes.push(criarCartao(e));
-        });
-        alerta.textContent = `Foram carregadas ${cartoes.length} tarefas com sucesso!`;
-        return carregarTarefas(cartoes);
-    }
-    
-}
-
 
 function criarCartao(tarefa) {
     const cartao = document.createElement("article");
@@ -104,6 +56,24 @@ function criarCartao(tarefa) {
     return cartao;
 }
 
+export function filtroBusca(estado){
+    const filtroTitulo = estado.busca;
+    const filtroStatus = estado.status;
+    const filtroPrioridade = estado.prioridade;
+    
+    console.log(filtroTitulo, filtroStatus, filtroPrioridade);
+
+
+    const resultado = estado.tarefas
+    .filter(tarefa => !filtroTitulo || tarefa.titulo.toLowerCase().includes(filtroTitulo.toLowerCase()))
+    .filter(tarefa => filtroStatus == "todos" || tarefa.status == filtroStatus)
+    .filter(tarefa => filtroPrioridade == "todos" || tarefa.prioridade == filtroPrioridade);
+
+    console.log(resultado);
+
+    return resultado;
+}
+
 
 function limparQuadro(){
     const quadroAfazer = document.querySelector("#aFazer ul");
@@ -116,6 +86,7 @@ function limparQuadro(){
     quadroEmRevisao.innerHTML = "";
     quadroConcluido.innerHTML = "";
 }
+
 
 function carregarTarefas(cards) {
     const quadroAfazer = document.querySelector("#aFazer ul");
@@ -144,7 +115,6 @@ function carregarTarefas(cards) {
     }
         
 }
-
 
 
 function captalizer(string) {
