@@ -1,10 +1,8 @@
-import {redenrizarEstado, queryFilter} from "./js/estado.js"
+import {redenrizarEstado, filtroBusca} from "./js/estado.js"
 import {carregarTarefas} from "./js/api.js"
+
 const botaoPesquisar = document.querySelector("#pesquisar");
 const botaoLimparFiltros = document.querySelector("#limparFiltros");
-
-
-
 
 const estadoApp = {
     tarefas: [], // Originais intocadas
@@ -45,11 +43,17 @@ iniciarQuadro();
 
 
 botaoPesquisar.addEventListener("click", (e) => {
+    estadoApp.prioridade = document.querySelector('#prioridadeFiltro input[name="prioridade"]:checked')?.value || "todos";
+    estadoApp.busca = document.querySelector("#filtroTitulo input").value;
+
+
     if (estadoApp.erro) return queryFilter("erro", estadoApp.erro);
     if (estadoApp.tarefas.length == 0) return queryFilter("vazio");
     
 
-    return redenrizarEstado("sucesso",filtroBusca(estadoApp));
+    let arryFiltrado = filtroBusca(estadoApp);
+
+    return redenrizarEstado("sucesso", arryFiltrado);
 });
 
 botaoLimparFiltros.addEventListener("click", (e) => {
@@ -61,23 +65,28 @@ botaoLimparFiltros.addEventListener("click", (e) => {
 
 });
 
+document.querySelector("#statusFiltro").addEventListener("change", (e) => {
+    estadoApp.status = !e.target.value ? "todos" : e.target.value;
 
-//filtro usado para filtrar as tarefas de acordo com os filtros selecionados pelo usuário
+    
+    let arrayFiltrado = filtroBusca(estadoApp);
+
+    if(!arrayFiltrado || arrayFiltrado.length == 0) estadoApp.erro = "vazio";
+
+    return redenrizarEstado("sucesso", arrayFiltrado);
+});
 
 
-console.log(filtroStatus, filtroPrioridade);
 
 
-function filtroBusca(estadoApp){
-    const filtroTitulo = document.querySelector("#filtroTitulo input").value;
-    const filtroStatus = document.querySelector('#statusFiltro input[name="status"]:checked')?.value || "todos";
-    const filtroPrioridade = document.querySelector('#prioridadeFiltro input[name="prioridade"]:checked')?.value || "todos";
 
-    console.log(filtroStatus, filtroPrioridade);
+document.querySelector("#prioridadeFiltro").addEventListener("change", (e) => {
+    estadoApp.prioridade = !e.target.value ? "todas" : e.target.value;
 
-    return estadoApp.tarefas
-    .filter(tarefa => filtroTitulo === "" || tarefa.titulo.toLowerCase().includes(filtroTitulo.toLowerCase()))
-    .filter(tarefa => filtroStatus.toLowerCase().trim() == "todos" || tarefa.status == filtroStatus.trim())
-    .filter(tarefa => filtroPrioridade.toLowerCase() == "todos" || tarefa.prioridade == filtroPrioridade.trim());
-}
 
+    let arryFiltrado = filtroBusca(estadoApp);
+    if(!arryFiltrado || arryFiltrado.length == 0) redenrizarEstado("vazio");
+
+
+    return redenrizarEstado("sucesso", arryFiltrado);
+});
